@@ -42,7 +42,25 @@ function articles_get($link,$id_article){
 
 }
 
-function articles_new ($title,$date,$content){
+function articles_new ($link,$title,$date,$content){
+
+    $title = trim($title);
+    $content = trim($content);
+
+    if ($title == '')
+        return false;
+
+    $t = "INSERT INTO articles (title, date, content) VALUES ('%s', '%s', '%s')";
+
+    $query = sprintf($t,mysqli_real_escape_string($link,$title),mysqli_real_escape_string($link,$date),mysqli_real_escape_string($link,$content));
+
+
+    $result = mysqli_query($link, $query);
+
+    if (!$result)
+        die(mysqli_error());
+
+    return true;
 
 }
 

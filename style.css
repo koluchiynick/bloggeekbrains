@@ -5,3 +5,17 @@ footer {
     margin-top: 30px;
     margin-bottom: 30px;
 }
+.form-item {
+    width: 100%;
+}
+#addart textarea {
+    height: 250px;
+}
+
+input[type="submit"] {
+    width: 100px;
+}
+
+#addart label {
+    width: 100%;
+}
