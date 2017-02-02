@@ -5,18 +5,40 @@
  * Date: 24.01.17
  * Time: 15:23
  */
-function articles_all (){
-    $art1 = ["id" => 1, "title" =>"Title1", "date" => "2017-01-24","content" => "Content1"];
-    $art2 = ["id" => 2, "title" =>"Title2", "date" => "2017-01-23","content" => "Content2"];
+function articles_all($link){
+    // Формируем запрос
+    $query = "SELECT * FROM articles ORDER BY id DESC";
+    $result = mysqli_query($link, $query);
 
-    $arr[0] = $art1;
-    $arr[1] = $art2;
+    if(!$result)
+        die(mysqli_error($link));
 
-    return $arr;
+    // Извлекаем данные
+    $n = mysqli_num_rows($result);
+    $articles = array();
+
+    for ($i = 0; $i < $n; $i++)
+    {
+        $row = mysqli_fetch_assoc($result);
+        $articles[] = $row;
+    }
+
+    return $articles;
 
 }
 
-function articles_get ($id){
+function articles_get($link,$id_article){
+
+    $query = sprintf("SELECT * FROM articles WHERE id=%d",(int)$id_article);
+    $result = mysqli_query($link, $query);
+
+    if(!$result)
+        die(mysqli_error($link));
+
+    $article = mysqli_fetch_assoc($result);
+
+    return $article;
+
 
 }
 
