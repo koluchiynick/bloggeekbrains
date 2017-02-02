@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Admin Panel"
+AuthUserFile /media/psf/site/bloggeekbrains/admin/.htpasswd
+Require valid-user
