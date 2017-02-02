@@ -1,8 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: koluchiy
- * Date: 24.01.17
- * Time: 15:21
- */
-echo 'Admin panel';
+
+require_once ("../database.php");
+require_once ("../models/articles.php");
+
+$link  = db_connect();
+
+$articles = articles_all($link);
+
+include ("../views/articles_admin.php");
